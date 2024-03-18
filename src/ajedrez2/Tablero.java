@@ -12,6 +12,7 @@ public class Tablero {
     public static final int mitad_cuadro = tamano_cuadro/2;
     
     public void dibujar(Graphics2D a2) {
+        
         int c = 0;
         
         for(int fil = 0; fil < maxFil; fil++){

@@ -2,6 +2,7 @@
 package piezas;
 
 import ajedrez2.Tablero;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -39,5 +40,42 @@ public class Pieza {
     
     public int getY(int fil){
         return fil * Tablero.tamano_cuadro;
+    }
+    
+    public int getCol(int x) {
+        return (x + Tablero.mitad_cuadro/Tablero.tamano_cuadro);
+    }
+    
+    public int getFil(int y) {
+        return (y + Tablero.mitad_cuadro/Tablero.tamano_cuadro);
+    }
+    
+    public void actualizarPosicion() {
+        x = getX(col);
+        y = getY(fil);
+        preCol = getCol(x);
+        preFil = getFil(y);
+    }
+    
+    public void reiniciarPosicion() {
+        col = preCol;
+        fil = preFil;
+        x = getX(col);
+        y = getY(fil);
+    }
+    
+    public boolean puedeMover(int targetCol, int targetFil) {
+        return false;
+    }
+    
+    public boolean estaEnElTablero(int targetCol, int targetFil) {
+        if (targetCol >= 0 && targetCol <= 7 && targetFil >= 0 && targetFil <= 7) {
+            return true;
+        }
+        return false;
+    }
+    
+    public void dibujar(Graphics2D a2) {
+        a2.drawImage(imagen, x, y, Tablero.tamano_cuadro, Tablero.tamano_cuadro, null);
     }
 }
